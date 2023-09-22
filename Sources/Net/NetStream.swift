@@ -188,7 +188,7 @@ open class NetStream: NSObject {
     /// Attaches the primary camera object.
     /// - Warning: This method can't use appendSampleBuffer at the same time.
     open func attachCamera(_ device: AVCaptureDevice?, onError: ((_ error: any Error) -> Void)? = nil) {
-        lockQueue.async {
+        DispatchQueue.main.async {
             do {
                 try self.mixer.videoIO.attachCamera(device)
             } catch {
@@ -201,7 +201,7 @@ open class NetStream: NSObject {
     /// - Warning: This method can't use appendSampleBuffer at the same time.
     @available(iOS 13.0, *)
     open func attachMultiCamera(_ device: AVCaptureDevice?, onError: ((_ error: any Error) -> Void)? = nil) {
-        lockQueue.async {
+        DispatchQueue.main.async {
             do {
                 try self.mixer.videoIO.attachMultiCamera(device)
             } catch {
@@ -213,7 +213,7 @@ open class NetStream: NSObject {
     /// Attaches the audio capture object.
     /// - Warning: This method can't use appendSampleBuffer at the same time.
     open func attachAudio(_ device: AVCaptureDevice?, automaticallyConfiguresApplicationAudioSession: Bool = false, onError: ((_ error: any Error) -> Void)? = nil) {
-        lockQueue.async {
+        DispatchQueue.main.async {
             do {
                 try self.mixer.audioIO.attachAudio(device, automaticallyConfiguresApplicationAudioSession: automaticallyConfiguresApplicationAudioSession)
             } catch {
@@ -225,7 +225,7 @@ open class NetStream: NSObject {
     /// Attaches the screen input object.
     @available(iOS, unavailable)
     open func attachScreen(_ input: AVCaptureScreenInput?) {
-        lockQueue.async {
+        DispatchQueue.main.async {
             self.mixer.videoIO.attachScreen(input)
         }
     }

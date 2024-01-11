@@ -338,7 +338,7 @@ open class IOStream: NSObject {
     @available(tvOS 17.0, *)
     @available(*, deprecated, renamed: "attachCamera(_:channel:configuration:)")
     public func attachCamera(_ device: AVCaptureDevice?, onError: ((_ error: any Error) -> Void)? = nil) {
-        lockQueue.async {
+        DispatchQueue.main.async {
             do {
                 try self.mixer.videoIO.attachCamera(device, channel: 0, configuration: nil)
             } catch {
@@ -352,7 +352,7 @@ open class IOStream: NSObject {
     @available(iOS 13.0, tvOS 17.0, *)
     @available(*, deprecated, renamed: "attachCamera(_:channel:configuration:)")
     public func attachMultiCamera(_ device: AVCaptureDevice?, onError: ((_ error: any Error) -> Void)? = nil) {
-        lockQueue.async {
+        DispatchQueue.main.async {
             do {
                 try self.mixer.videoIO.attachCamera(device, channel: 1, configuration: nil)
             } catch {
@@ -364,7 +364,7 @@ open class IOStream: NSObject {
     /// Attaches the camera object.
     @available(tvOS 17.0, *)
     public func attachCamera(_ device: AVCaptureDevice?, channel: UInt8 = 0, configuration: IOVideoCaptureConfigurationBlock? = nil) {
-        lockQueue.async {
+        DispatchQueue.main.async {
             do {
                 try self.mixer.videoIO.attachCamera(device, channel: channel, configuration: configuration)
             } catch {
@@ -385,7 +385,7 @@ open class IOStream: NSObject {
     /// - Warning: This method can't use appendSampleBuffer at the same time.
     @available(tvOS 17.0, *)
     public func attachAudio(_ device: AVCaptureDevice?, automaticallyConfiguresApplicationAudioSession: Bool = false, onError: ((_ error: any Error) -> Void)? = nil) {
-        lockQueue.async {
+        DispatchQueue.main.async {
             do {
                 try self.mixer.audioIO.attachAudio(device, automaticallyConfiguresApplicationAudioSession: automaticallyConfiguresApplicationAudioSession)
             } catch {
@@ -398,7 +398,7 @@ open class IOStream: NSObject {
     #if os(macOS)
     /// Attaches the screen input object.
     public func attachScreen(_ input: AVCaptureScreenInput?, channel: UInt8 = 0) {
-        lockQueue.async {
+        DispatchQueue.main.async {
             self.mixer.videoIO.attachScreen(input, channel: channel)
         }
     }

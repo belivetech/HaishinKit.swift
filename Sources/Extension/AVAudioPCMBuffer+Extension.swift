@@ -75,11 +75,11 @@ extension AVAudioPCMBuffer {
             let channelCount = Int(format.channelCount)
             switch format.commonFormat {
             case .pcmFormatInt16:
-                int16ChannelData?[0].update(repeating: 0, count: numSamples * channelCount)
+                int16ChannelData?[0].assign(repeating: 0, count: numSamples * channelCount)
             case .pcmFormatInt32:
-                int32ChannelData?[0].update(repeating: 0, count: numSamples * channelCount)
+                int32ChannelData?[0].assign(repeating: 0, count: numSamples * channelCount)
             case .pcmFormatFloat32:
-                floatChannelData?[0].update(repeating: 0, count: numSamples * channelCount)
+                floatChannelData?[0].assign(repeating: 0, count: numSamples * channelCount)
             default:
                 break
             }
@@ -87,11 +87,11 @@ extension AVAudioPCMBuffer {
             for i in 0..<Int(format.channelCount) {
                 switch format.commonFormat {
                 case .pcmFormatInt16:
-                    int16ChannelData?[i].update(repeating: 0, count: numSamples)
+                    int16ChannelData?[i].assign(repeating: 0, count: numSamples)
                 case .pcmFormatInt32:
-                    int32ChannelData?[i].update(repeating: 0, count: numSamples)
+                    int32ChannelData?[i].assign(repeating: 0, count: numSamples)
                 case .pcmFormatFloat32:
-                    floatChannelData?[i].update(repeating: 0, count: numSamples)
+                    floatChannelData?[i].assign(repeating: 0, count: numSamples)
                 default:
                     break
                 }

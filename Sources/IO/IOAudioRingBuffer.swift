@@ -137,11 +137,11 @@ final class IOAudioRingBuffer {
                 let channelCount = Int(inputFormat.channelCount)
                 switch inputFormat.commonFormat {
                 case .pcmFormatInt16:
-                    bufferList[0].mData?.assumingMemoryBound(to: Int16.self).advanced(by: offset * channelCount).update(repeating: 0, count: numSamples)
+                    bufferList[0].mData?.assumingMemoryBound(to: Int16.self).advanced(by: offset * channelCount).assign(repeating: 0, count: numSamples)
                 case .pcmFormatInt32:
-                    bufferList[0].mData?.assumingMemoryBound(to: Int32.self).advanced(by: offset * channelCount).update(repeating: 0, count: numSamples)
+                    bufferList[0].mData?.assumingMemoryBound(to: Int32.self).advanced(by: offset * channelCount).assign(repeating: 0, count: numSamples)
                 case .pcmFormatFloat32:
-                    bufferList[0].mData?.assumingMemoryBound(to: Float32.self).advanced(by: offset * channelCount).update(repeating: 0, count: numSamples)
+                    bufferList[0].mData?.assumingMemoryBound(to: Float32.self).advanced(by: offset * channelCount).assign(repeating: 0, count: numSamples)
                 default:
                     break
                 }
@@ -149,11 +149,11 @@ final class IOAudioRingBuffer {
                 for i in 0..<Int(inputFormat.channelCount) {
                     switch inputFormat.commonFormat {
                     case .pcmFormatInt16:
-                        bufferList[i].mData?.assumingMemoryBound(to: Int16.self).advanced(by: offset).update(repeating: 0, count: numSamples)
+                        bufferList[i].mData?.assumingMemoryBound(to: Int16.self).advanced(by: offset).assign(repeating: 0, count: numSamples)
                     case .pcmFormatInt32:
-                        bufferList[i].mData?.assumingMemoryBound(to: Int32.self).advanced(by: offset).update(repeating: 0, count: numSamples)
+                        bufferList[i].mData?.assumingMemoryBound(to: Int32.self).advanced(by: offset).assign(repeating: 0, count: numSamples)
                     case .pcmFormatFloat32:
-                        bufferList[i].mData?.assumingMemoryBound(to: Float32.self).advanced(by: offset).update(repeating: 0, count: numSamples)
+                        bufferList[i].mData?.assumingMemoryBound(to: Float32.self).advanced(by: offset).assign(repeating: 0, count: numSamples)
                     default:
                         break
                     }
